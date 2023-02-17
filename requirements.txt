@@ -1,2 +1,2 @@
-beautifulsoup4
-pyperclip
+pip install beautifulsoup4
+pip install pyperclip
