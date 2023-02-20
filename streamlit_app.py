@@ -5,7 +5,7 @@ import pyperclip
 
 def extract_urls_from_sitemap(sitemap_url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
-    response = requests.get(sitemap_url, headers=headers)
+    response = requests.get(sitemap_url, headers=headers, timeout=30)
     soup = BeautifulSoup(response.content, 'xml')
     urls = []
     for loc in soup.find_all('loc'):
