@@ -32,7 +32,7 @@ with col1:
 st.markdown("""
 <style>
     .output-container {
-        background-color: #f1f1f1;
+        background-color: #d8d8d8;
         padding: 1rem;
     }
 </style>
