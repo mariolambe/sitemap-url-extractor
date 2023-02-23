@@ -13,7 +13,7 @@ def extract_urls_from_sitemap(sitemap_url):
     return urls
 
 st.set_page_config(page_title="Sitemap URL Extractor", page_icon=":memo:", layout="wide")
-st.header('Sitemap URL Extractor emojis :sunglasses:')
+st.header('Sitemap URL Extractor :sunglasses:')
 
 col1, col2 = st.columns([2, 1])
 with col1:
