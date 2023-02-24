@@ -23,7 +23,6 @@ Simply enter the URL of a sitemap XML file, click "Go", and the app will extract
 
 It works also with sitemap index file (example: https://www.google.com/sitemap.xml). 
 
-In case of questions, reach out via email: mariolambertucci@gmail.com
 """
 
 # Add sidebar text
