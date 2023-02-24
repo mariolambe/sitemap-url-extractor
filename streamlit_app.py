@@ -35,9 +35,12 @@ with col1:
     if st.button('Go', key='go'):
         urls = extract_urls_from_sitemap(sitemap_url)
         st.write(f'Extracted {len(urls)} URLs:')
+        download_button = st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
+        if download_button:
+            st.write('Download successful.')
         with st.container():
             st.code('\n'.join(urls), language='')
-        download_button = st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
+        download_button = st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download1')
         if download_button:
             st.write('Download successful.')
 
