@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 from bs4 import BeautifulSoup
-import pyperclip
 
 def extract_urls_from_sitemap(sitemap_url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
@@ -14,7 +13,6 @@ def extract_urls_from_sitemap(sitemap_url):
 
 st.set_page_config(page_title="Sitemap URL Extractor", page_icon=":memo:", layout="wide")
 st.header('Sitemap URL Extractor :sunglasses:')
-
 
 # Define sidebar text
 SIDEBAR_TEXT = """
@@ -31,7 +29,6 @@ In case of questions, reach out via email: mariolambertucci@gmail.com
 # Add sidebar text
 st.sidebar.markdown(SIDEBAR_TEXT)
 
-
 col1, col2 = st.columns([2, 1])
 with col1:
     sitemap_url = st.text_input('Enter sitemap URL:', key='sitemap')
@@ -42,8 +39,10 @@ with col1:
             st.code('\n'.join(urls), language='')
         copy_button = st.button(f'Copy All ({len(urls)})', key='copy')
         if copy_button:
-            pyperclip.copy('\n'.join(urls))
-            st.success('All URLs copied to clipboard!')
+            st.write('Copy successful.')
+        download_button = st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
+        if download_button:
+            st.write('Download successful.')
 
 # Add some custom CSS to style the output container
 st.markdown("""
