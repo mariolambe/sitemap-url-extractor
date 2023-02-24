@@ -37,9 +37,6 @@ with col1:
         st.write(f'Extracted {len(urls)} URLs:')
         with st.container():
             st.code('\n'.join(urls), language='')
-        copy_button = st.button(f'Copy All ({len(urls)})', key='copy')
-        if copy_button:
-            st.write('Copy successful.')
         download_button = st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
         if download_button:
             st.write('Download successful.')
