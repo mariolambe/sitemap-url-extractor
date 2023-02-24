@@ -52,13 +52,11 @@ with col1:
         download_button = st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download1')
         if download_button:
             st.write('Download successful.')
-
-# Add some custom CSS to style the output container
-st.markdown("""
-<style>
-    .output-container {
-        background-color: #d8d8d8;
-        padding: 1rem;
-    }
-</style>
-""", unsafe_allow_html=True)
+            
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
