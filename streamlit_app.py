@@ -29,6 +29,16 @@ In case of questions, reach out via email: mariolambertucci@gmail.com
 # Add sidebar text
 st.sidebar.markdown(SIDEBAR_TEXT)
 
+#Define sidebar subheader text
+SIDERBAR_SUBHEADER_TEXT = """
+About Author
+SEO Specialist [**Mario Lambertucci**](https://www.linkedin.com/in/mariolambertucci/)
+"""
+
+# Add sidebar subheader text
+st.sidebar.subheader(SIDERBAR_SUBHEADER_TEXT)
+
+
 col1, col2 = st.columns([2, 1])
 with col1:
     sitemap_url = st.text_input('Enter sitemap URL:', key='sitemap')
