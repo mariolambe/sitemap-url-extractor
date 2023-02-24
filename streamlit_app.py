@@ -15,6 +15,20 @@ def extract_urls_from_sitemap(sitemap_url):
 st.set_page_config(page_title="Sitemap URL Extractor", page_icon=":memo:", layout="wide")
 st.header('Sitemap URL Extractor :sunglasses:')
 
+
+# Define sidebar text
+SIDEBAR_TEXT = """
+### About the Sitemap URL Extractor
+The Sitemap URL Extractor is a Streamlit app that helps you extract URLs from sitemap XML files. 
+Simply enter the URL of a sitemap XML file, click "Go", and the app will extract all the URLs contained in the file.
+It works also with sitemap index file (example: https://www.google.com/sitemap.xml). 
+In case of questions, reach out via email: mariolambertucci@gmail.com
+"""
+
+# Add sidebar text
+st.sidebar.markdown(SIDEBAR_TEXT)
+
+
 col1, col2 = st.columns([2, 1])
 with col1:
     sitemap_url = st.text_input('Enter sitemap URL:', key='sitemap')
