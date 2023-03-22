@@ -23,6 +23,8 @@ Simply enter the URL of a sitemap XML file, click "Go", and the app will extract
 
 It works also with sitemap index file (example: https://www.google.com/sitemap.xml). 
 
+If you want to explore alternative ways (for example via Google sheets, Screaming Frog, command line) check out this article on [**How to extract urls from sitemaps**](https://www.mariolambertucci.com/how-to-extract-urls-from-sitemaps/)
+
 """
 
 # Add sidebar text
