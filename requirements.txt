@@ -3,3 +3,4 @@ pyperclip
 lxml
 streamlit
 requests
+aiohttp
