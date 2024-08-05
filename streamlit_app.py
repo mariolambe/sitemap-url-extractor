@@ -55,6 +55,7 @@ st.sidebar.subheader(SIDEBAR_SUBHEADER_TEXT)
 
 # Main content
 st.write('Enter the URL of your sitemap XML file below and click "Go" to extract all URLs.')
+st.write('For example, try this [Google Sitemap](https://www.google.com/sitemap.xml)')
 
 col1, col2 = st.columns([3, 1])
 with col1:
@@ -70,8 +71,6 @@ with col1:
             st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
         else:
             st.warning("No URLs found or there was an error with the sitemap.")
-else:
-    st.write('For example, try this [Google Sitemap](https://www.google.com/sitemap.xml)')
 
 # Hide Streamlit's default menu and footer
 hide_default_format = """
@@ -81,6 +80,7 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
+
 
 
 
