@@ -27,7 +27,6 @@ meta_tags = """
 st.markdown(meta_tags, unsafe_allow_html=True)
 
 st.title('Sitemap URL Extractor 😎')
-st.subheader('Extract URLs from your sitemap XML files easily')
 
 # Define sidebar text
 SIDEBAR_TEXT = """
