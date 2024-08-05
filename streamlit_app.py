@@ -27,11 +27,14 @@ meta_tags = """
 st.markdown(meta_tags, unsafe_allow_html=True)
 
 st.title('Sitemap URL Extractor 😎')
+st.subheader('Extract URLs from your sitemap XML files easily')
 
 # Define sidebar text
 SIDEBAR_TEXT = """
 ### About the Sitemap URL Extractor
-The Sitemap URL Extractor is a 100% Free Streamlit app that helps you extract URLs from sitemap XML files.
+The Sitemap URL Extractor is a Streamlit app that helps you extract URLs from sitemap XML files.
+
+Simply enter the URL of a sitemap XML file, click "Go", and the app will extract all the URLs contained in the file.
 
 It works also with sitemap index file (example: [Google Sitemap](https://www.google.com/sitemap.xml)).
 
@@ -91,4 +94,14 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
+
+# Google AdSense Code
+adsense_code = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2331172121439147"
+     crossorigin="anonymous"></script>
+"""
+
+# Inject Google AdSense Code
+st.markdown(adsense_code, unsafe_allow_html=True)
+
 
