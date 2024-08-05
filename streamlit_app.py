@@ -40,8 +40,6 @@ SIDEBAR_TEXT = """
 ### About the Sitemap URL Extractor
 The Sitemap URL Extractor is a Streamlit app that helps you extract URLs from sitemap XML files.
 
-Simply enter the URL of a sitemap XML file, click "Go", and the app will extract all the URLs contained in the file.
-
 It works also with sitemap index file (example: [Google Sitemap](https://www.google.com/sitemap.xml)).
 
 If you want to explore alternative ways (for example via Google sheets, Screaming Frog, command line) check out this article on [**How to extract URLs from sitemaps**](https://www.mariolambertucci.com/how-to-extract-urls-from-sitemaps/).
