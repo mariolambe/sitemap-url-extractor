@@ -55,14 +55,21 @@ st.sidebar.subheader(SIDEBAR_SUBHEADER_TEXT)
 
 # Main content
 st.write('Enter the URL of your sitemap XML file below and click "Go" to extract all URLs.')
-st.write('For example, try this [Google Sitemap](https://www.google.com/sitemap.xml)')
+
+# Function to handle automatic fill and submit
+def autofill_and_submit():
+    st.session_state.sitemap = "https://www.google.com/sitemap.xml"
+    st.session_state.go = True
+
+st.button("Try this Google Sitemap", on_click=autofill_and_submit)
 
 col1, col2 = st.columns([3, 1])
 with col1:
     sitemap_url = st.text_input('Enter Sitemap URL:', placeholder="Enter your sitemap URL here", key='sitemap')
-    if st.button('Go', key='go'):
+    if st.button('Go', key='go') or st.session_state.get('go', False):
         with st.spinner('Extracting URLs...'):
             urls = extract_urls_from_sitemap(sitemap_url)
+            st.session_state.go = False
         if urls:
             st.success(f'Extracted {len(urls)} URLs:')
             st.code('\n'.join(urls), language='')
@@ -80,7 +87,3 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
-
-
-
-
