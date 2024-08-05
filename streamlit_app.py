@@ -1,4 +1,10 @@
 import streamlit as st
+import streamlit.components.v1 as com
+com.html("""
+<head>
+<meta name="google-adsense-account" content="ca-pub-2331172121439147">
+</head>
+""")
 import requests
 from bs4 import BeautifulSoup
 
