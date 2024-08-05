@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import requests
+from pathlib import Path
 from bs4 import BeautifulSoup
 
 # Set page configuration
@@ -18,28 +19,14 @@ def extract_urls_from_sitemap(sitemap_url):
         st.error(f"Error fetching the sitemap: {e}")
         return []
 
-# JavaScript to inject meta tags into the head
-inject_meta_tags = """
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var head = document.head;
+index = Path(st.__file__).parent / "static" / "index.html"
+html = index.read_text()
 
-    var title = document.createElement('title');
-    title.textContent = 'Sitemap URL Extractor [Free Tool]';
-    head.appendChild(title);
+html = html.replace("<head>", """<head>
+<meta name="google-adsense-account" content="ca-pub-2331172121439147">
+""".replace("\n", ""))
 
-    var metaDescription = document.createElement('meta');
-    metaDescription.name = 'description';
-    metaDescription.content = 'Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.';
-    head.appendChild(metaDescription);
-
-    var metaAdsense = document.createElement('meta');
-    metaAdsense.name = 'google-adsense-account';
-    metaAdsense.content = 'ca-pub-2331172121439147';
-    head.appendChild(metaAdsense);
-});
-</script>
-"""
+index.write_text(html)
 
 # Inject the JavaScript into the Streamlit app
 components.html(inject_meta_tags, height=0)
