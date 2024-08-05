@@ -24,7 +24,7 @@ meta_tags = """
 <head>
 <title>Sitemap URL Extractor [Free Tool]</title>
 <meta name="description" content="Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.">
-<meta name="google-site-verification" content="your-google-verification-code">
+<meta name="google-adsense-account" content="ca-pub-2331172121439147">
 </head>
 <body>
 </body>
