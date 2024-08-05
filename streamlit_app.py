@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 
+# Set page configuration
+st.set_page_config(page_title="Sitemap URL Extractor", page_icon=":memo:", layout="wide")
+
 def extract_urls_from_sitemap(sitemap_url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
     try:
@@ -17,13 +20,12 @@ def extract_urls_from_sitemap(sitemap_url):
 # Inject meta title and description
 meta_tags = """
 <head>
-<title>Sitemap URL Extractor [Free SEO] - SEO Tool</title>
+<title>Sitemap URL Extractor [Free Tool]</title>
 <meta name="description" content="Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.">
 </head>
 """
 st.markdown(meta_tags, unsafe_allow_html=True)
 
-st.set_page_config(page_title="Sitemap URL Extractor", page_icon=":memo:", layout="wide")
 st.header('Sitemap URL Extractor :sunglasses:')
 
 # Define sidebar text
@@ -74,4 +76,5 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
+
 
