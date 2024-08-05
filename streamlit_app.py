@@ -1,7 +1,5 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import requests
-from pathlib import Path
 from bs4 import BeautifulSoup
 
 # Set page configuration
@@ -19,41 +17,17 @@ def extract_urls_from_sitemap(sitemap_url):
         st.error(f"Error fetching the sitemap: {e}")
         return []
 
-index = Path(st.__file__).parent / "static" / "index.html"
-html = index.read_text()
-
-html = html.replace("<head>", """<head>
+# Inject meta title, description, and AdSense meta tag
+meta_tags = """
+<head>
+<title>Sitemap URL Extractor [Free Tool]</title>
+<meta name="description" content="Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.">
 <meta name="google-adsense-account" content="ca-pub-2331172121439147">
-""".replace("\n", ""))
-
-index.write_text(html)
-
-
-
-# JavaScript to inject meta tags into the head
-inject_meta_tags = """
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var head = document.head;
-
-    var metaDescription = document.createElement('meta');
-    metaDescription.name = 'description';
-    metaDescription.content = 'Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.';
-    head.appendChild(metaDescription);
-
-    var metaAdsense = document.createElement('meta');
-    metaAdsense.name = 'google-adsense-account';
-    metaAdsense.content = 'ca-pub-2331172121439147';
-    head.appendChild(metaAdsense);
-});
-</script>
+</head>
 """
-
-# Inject the JavaScript into the Streamlit app
-components.html(inject_meta_tags, height=0)
+st.markdown(meta_tags, unsafe_allow_html=True)
 
 st.title('Sitemap URL Extractor 😎')
-st.subheader('Extract URLs from your sitemap XML files easily')
 
 # Define sidebar text
 SIDEBAR_TEXT = """
@@ -91,4 +65,31 @@ def autofill_and_submit():
 
 st.button("Try this Google Sitemap", on_click=autofill_and_submit)
 
-col1,
+col1, col2 = st.columns([3, 1])
+with col1:
+    sitemap_url = st.text_input('Enter Sitemap URL:', placeholder="Enter your sitemap URL here", key='sitemap')
+    go_button_clicked = st.button('Go', key='go_button')
+
+    # Check if 'Go' button is clicked or autofill was triggered
+    if go_button_clicked or st.session_state.go:
+        with st.spinner('Extracting URLs...'):
+            urls = extract_urls_from_sitemap(sitemap_url)
+            st.session_state.go = False  # Reset the 'go' state
+        if urls:
+            st.success(f'Extracted {len(urls)} URLs:')
+            st.code('\n'.join(urls), language='')
+
+            # Download button
+            st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
+        else:
+            st.warning("No URLs found or there was an error with the sitemap.")
+
+# Hide Streamlit's default menu and footer
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
+
