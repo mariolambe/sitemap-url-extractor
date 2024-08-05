@@ -17,11 +17,12 @@ def extract_urls_from_sitemap(sitemap_url):
         st.error(f"Error fetching the sitemap: {e}")
         return []
 
-# Inject meta title and description
+# Inject meta title, description, and AdSense meta tag
 meta_tags = """
 <head>
 <title>Sitemap URL Extractor [Free Tool]</title>
 <meta name="description" content="Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.">
+<meta name="google-adsense-account" content="ca-pub-2331172121439147">
 </head>
 """
 st.markdown(meta_tags, unsafe_allow_html=True)
@@ -95,13 +96,5 @@ hide_default_format = """
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
 
-# Google AdSense Code
-adsense_code = """
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2331172121439147"
-     crossorigin="anonymous"></script>
-"""
-
-# Inject Google AdSense Code
-st.markdown(adsense_code, unsafe_allow_html=True)
 
 
