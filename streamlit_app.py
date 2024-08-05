@@ -1,10 +1,5 @@
 import streamlit as st
 import streamlit.components.v1 as com
-com.html("""
-<head>
-<meta name="google-adsense-account" content="ca-pub-2331172121439147">
-</head>
-""")
 import requests
 from bs4 import BeautifulSoup
 
@@ -23,20 +18,13 @@ def extract_urls_from_sitemap(sitemap_url):
         st.error(f"Error fetching the sitemap: {e}")
         return []
 
-# Inject meta title, description, and AdSense meta tag using st.components.v1.html
+# Inject meta tags and AdSense meta tag using st.components.v1.html
 meta_tags = """
-<!DOCTYPE html>
-<html>
-<head>
 <title>Sitemap URL Extractor [Free Tool]</title>
 <meta name="description" content="Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.">
 <meta name="google-adsense-account" content="ca-pub-2331172121439147">
-</head>
-<body>
-</body>
-</html>
 """
-st.components.v1.html(meta_tags, height=0)
+com.html(meta_tags, height=0)
 
 st.title('Sitemap URL Extractor 😎')
 st.subheader('Extract URLs from your sitemap XML files easily')
@@ -89,7 +77,7 @@ with col1:
             st.session_state.go = False  # Reset the 'go' state
         if urls:
             st.success(f'Extracted {len(urls)} URLs:')
-            st.code('\n'.join(urls), language='')
+            st.text_area('Extracted URLs', '\n'.join(urls), height=200)
 
             # Download button
             st.download_button(label='Download URLs', data='\n'.join(urls), file_name='urls.txt', mime='text/plain', key='download')
@@ -104,6 +92,7 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
+
 
 
 
