@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-from pathlib import Path
 from bs4 import BeautifulSoup
 
 # Set page configuration
@@ -29,20 +28,6 @@ meta_tags = """
 st.markdown(meta_tags, unsafe_allow_html=True)
 
 st.title('Sitemap URL Extractor 😎')
-
-
-index = Path(st.__file__).parent / "static" / "index.html"
-html = index.read_text()
-
-html = html.replace("<head>", """<head>
-<meta name="google-adsense-account" content="ca-pub-2331172121439147">
-""".replace("\n", ""))
-
-index.write_text(html)
-
-
-
-
 
 # Define sidebar text
 SIDEBAR_TEXT = """
@@ -107,4 +92,3 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
-
