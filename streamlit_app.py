@@ -53,6 +53,10 @@ SEO Specialist [**Mario Lambertucci**](https://www.linkedin.com/in/mariolambertu
 # Add sidebar subheader text
 st.sidebar.subheader(SIDEBAR_SUBHEADER_TEXT)
 
+# Initialize session state
+if 'go' not in st.session_state:
+    st.session_state['go'] = False
+
 # Main content
 st.write('Enter the URL of your sitemap XML file below and click "Go" to extract all URLs.')
 
@@ -66,10 +70,13 @@ st.button("Try this Google Sitemap", on_click=autofill_and_submit)
 col1, col2 = st.columns([3, 1])
 with col1:
     sitemap_url = st.text_input('Enter Sitemap URL:', placeholder="Enter your sitemap URL here", key='sitemap')
-    if st.button('Go', key='go') or st.session_state.get('go', False):
+    go_button_clicked = st.button('Go', key='go_button')
+
+    # Check if 'Go' button is clicked or autofill was triggered
+    if go_button_clicked or st.session_state.go:
         with st.spinner('Extracting URLs...'):
             urls = extract_urls_from_sitemap(sitemap_url)
-            st.session_state.go = False
+            st.session_state.go = False  # Reset the 'go' state
         if urls:
             st.success(f'Extracted {len(urls)} URLs:')
             st.code('\n'.join(urls), language='')
@@ -87,3 +94,4 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
+
