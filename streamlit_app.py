@@ -18,15 +18,31 @@ def extract_urls_from_sitemap(sitemap_url):
         st.error(f"Error fetching the sitemap: {e}")
         return []
 
-# Inject meta tags using st.markdown with unsafe_allow_html=True
-meta_tags = """
-<head>
-<title>Sitemap URL Extractor [Free Tool]</title>
-<meta name="description" content="Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.">
-<meta name="google-adsense-account" content="ca-pub-2331172121439147">
-</head>
+# JavaScript to inject meta tags into the head
+inject_meta_tags = """
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var head = document.head;
+
+    var title = document.createElement('title');
+    title.textContent = 'Sitemap URL Extractor [Free Tool]';
+    head.appendChild(title);
+
+    var metaDescription = document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = 'Extract URLs from sitemap XML files with this easy-to-use Streamlit app. Enter the URL of a sitemap XML file and get all contained URLs.';
+    head.appendChild(metaDescription);
+
+    var metaAdsense = document.createElement('meta');
+    metaAdsense.name = 'google-adsense-account';
+    metaAdsense.content = 'ca-pub-2331172121439147';
+    head.appendChild(metaAdsense);
+});
+</script>
 """
-st.markdown(meta_tags, unsafe_allow_html=True)
+
+# Inject the JavaScript into the Streamlit app
+components.html(inject_meta_tags, height=0)
 
 st.title('Sitemap URL Extractor 😎')
 st.subheader('Extract URLs from your sitemap XML files easily')
@@ -94,6 +110,7 @@ hide_default_format = """
        </style>
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
+
 
 
 
