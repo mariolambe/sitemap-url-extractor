@@ -22,7 +22,6 @@ def extract_urls_from_sitemap(sitemap_url):
 with open("google_adsense.html", "r") as f:
     html_code = f.read()
     components.html(html_code, height=0)
-st.markdown(meta_tags, unsafe_allow_html=True)
 
 st.title('Sitemap URL Extractor 😎')
 
