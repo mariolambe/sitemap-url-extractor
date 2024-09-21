@@ -3,6 +3,19 @@ import streamlit.components.v1 as components
 import requests
 from bs4 import BeautifulSoup
 
+# JavaScript for redirection
+redirect_script = """
+<script type="text/javascript">
+    window.location.href = "https://sitemap-url-extractor.netlify.app/";
+</script>
+"""
+
+# Inject the redirection
+st.markdown(redirect_script, unsafe_allow_html=True)
+
+
+
+
 # Set page configuration
 st.set_page_config(page_title="Sitemap URL Extractor", page_icon="😎", layout="wide")
 
