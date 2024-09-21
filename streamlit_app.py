@@ -13,9 +13,6 @@ redirect_script = """
 # Inject the redirection
 st.markdown(redirect_script, unsafe_allow_html=True)
 
-
-
-
 # Set page configuration
 st.set_page_config(page_title="Sitemap URL Extractor", page_icon="😎", layout="wide")
 
